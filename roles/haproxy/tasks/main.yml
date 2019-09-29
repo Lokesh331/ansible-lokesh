@@ -14,5 +14,5 @@
 - name: configuration haproxy
   template:
     src: haproxy.cfg.j2
-    dest: /etc/haproxy/haproxy.cf
+    dest: /etc/haproxy/haproxy.cfg
   notify: restart haproxy
