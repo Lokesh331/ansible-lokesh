@@ -3,22 +3,25 @@
    hosts: all
    become: yes
    tasks:
-    - name: enable repos
+    - name: enable repos in hosts
       copy: 
         src: open_three-tier-app.repo
         dest: /etc/yum.repos.d/open_three-tier-app.repo
         mode: 0644
+
  - name: deploy haproxy
    hosts: frontends
    become: yes
    roles:
     - haproxy
+
  - name: deploy apache and  tomcat
    hosts: apps
    become: yes
    roles:
     - tomcat
     - apache
+
  - name: deploy postgres
    hosts: appdbs
    become: yes

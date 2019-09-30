@@ -1,22 +1,26 @@
 ---
 # tasks file for tomcat
-- name: install tomcat
+- name: Install tomcat
   yum:
     name: tomcat
     state: latest
+
 - name: enable tomcat at boot 
   service:
     name: tomcat
     enabled: yes
-- name: create temp
+
+- name: create web root directory
   file:
     path: /usr/share/tomcat/webapps/ROOT
     state: directory
-- name: make Entry in index
+
+- name: copying index template
   template:
     src: index.html.j2
     dest: /usr/share/tomcat/webapps/ROOT/index.html
     mode: 0644
+
 - name: start tomcat
   service:
     name: tomcat

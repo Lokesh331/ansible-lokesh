@@ -1,16 +1,19 @@
 ---
 # tasks file for haproxy
-- name: install required packages
+#
+- name: Installing httpie and haproxy  packages
   yum:
     name: 
       - httpie
       - haproxy
     state: latest
+
 - name: enable and start haproxy service
   service:
     name: haproxy
     enabled: yes
     state: started
+
 - name: configuration haproxy
   template:
     src: haproxy.cfg.j2
